@@ -1,0 +1,19 @@
+                              ┌─────────────────┐
+                              │  Discovery Svc   │
+                              │  (Eureka)        │
+                              └────────▲─────────┘
+                                       │ register
+        ┌──────────────┐      ┌───────┴────────┐
+Client ─►│ Cloud Gateway │─────►  All Services   │
+        └──────┬───────┘      └────────────────┘
+               │
+   ┌───────────┼───────────────┬──────────────────┐
+   ▼           ▼               ▼                  ▼
+┌────────┐ ┌──────────┐  ┌──────────────┐   ┌────────────────┐
+│  Auth  │ │ Expense  │  │ Notification │   │  Scheduler      │
+│  Svc   │ │  Svc     │◄─┤   Svc        │◄──┤ (PDF Report)    │
+└───┬────┘ └────┬─────┘  └──────┬───────┘   └────────┬────────┘
+    │            │               │                    │
+    ▼            ▼               ▼                    ▼
+  Postgres    Postgres        Kafka Topic          Kafka Topic
+  (auth_db)   (expense_db)   (email/notif)      (report-generation)
