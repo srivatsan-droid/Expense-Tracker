@@ -35,7 +35,7 @@ public class UserController {
     // GET: Get Users By ID
     @GetMapping("/{id}")
     public ResponseEntity<List<UserResponse>> getUserById(@PathVariable UUID id) {
-        List<UserResponse> user = userservice.getUserById(id);
+        List<UserResponse> user = userservice.  getUserById(id);
         return ResponseEntity.ok(user);
     }
 
